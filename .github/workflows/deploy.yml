@@ -23,9 +23,9 @@ jobs:
         - name: Retrieve Deployment Configuration
           id: set_var
           run: |
-            type=$(yq 'deploy.type' < githubpages.yaml)
-            file=$(yq 'deploy.file' < githubpages.yaml)
-            location=$(yq 'deploy.location' < githubpages.yaml)
+            type=$(yq '.deploy.type' < githubpages.yaml)
+            file=$(yq '.deploy.file' < githubpages.yaml)
+            location=$(yq '.deploy.location' < githubpages.yaml)
         - run: |
             echo "${{steps.set_var.outputs.type}}"
             echo "${{steps.set_var.outputs.location}}"
