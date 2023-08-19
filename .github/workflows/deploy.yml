@@ -24,9 +24,9 @@ jobs:
           id: set_var
           run: |
             yq --help
-            type=$(yq '.deploy.type' < githubpages.yaml)
-            file=$(yq '.deploy.file' < githubpages.yaml)
-            location=$(yq '.deploy.location' < githubpages.yaml)
+            type=$(yq r githubpages.yaml '.deploy.type')
+            file=$(yq r githubpages.yaml '.deploy.file')
+            location=$(yq r githubpages.yaml '.deploy.location')
         - run: |
             echo "${{steps.set_var.outputs.type}}"
             echo "${{steps.set_var.outputs.location}}"
