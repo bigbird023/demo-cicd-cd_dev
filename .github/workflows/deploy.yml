@@ -11,6 +11,10 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+
+        - name: setup
+          uses: chrisdickinson/setup-yq@latest
+
         - name: Checkout Out Expected State
           uses: actions/checkout@v3
           with:
@@ -19,9 +23,9 @@ jobs:
         - name: Retrieve Deployment Configuration
           id: set_var
           run: |
-            type=$(cat githubpages.yaml | jq 'deploy.type')
-            file=$(cat githubpages.yaml | jq 'deploy.file')
-            location=$(cat githubpages.yaml | jq 'deploy.location')
+            type=$(cat githubpages.yaml | yq 'deploy.type')
+            file=$(cat githubpages.yaml | yq 'deploy.file')
+            location=$(cat githubpages.yaml | yq 'deploy.location')
         - run: |
             echo "${{steps.set_var.outputs.type}}"
             echo "${{steps.set_var.outputs.location}}"
