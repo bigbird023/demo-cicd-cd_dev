@@ -1,0 +1,38 @@
+
+name: continuous delivery
+
+on:
+    push:
+        branches: [ "main" ]
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout Out Expected State
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+
+        - name: Retrieve Deployment Configuration
+          id: set_var
+          run: |
+            type=$(cat package.json | jq 'deploy.type')
+            file=$(cat package.json | jq 'deploy.file')
+            location=$(cat package.json | jq 'deploy.location')
+        - run: |
+            echo "${{steps.set_var.outputs.type}}"
+            echo "${{steps.set_var.outputs.location}}"
+            echo "${{steps.set_var.outputs.file}}"
+
+        # - name: Download Artifacts
+        #   uses: actions/download-artifact@v2
+
+        # - name: UnZip Artifacts
+        #   uses: actions/download-artifact@v2
+
+        # - name: Deploy to GitHub Pages
+        #   id: deployment
+        #   uses: actions/deploy-pages@v2 
