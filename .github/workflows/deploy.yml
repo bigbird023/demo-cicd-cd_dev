@@ -23,6 +23,7 @@ jobs:
         - name: Retrieve Deployment Configuration
           id: set_var
           run: |
+            yq --help
             type=$(yq '.deploy.type' < githubpages.yaml)
             file=$(yq '.deploy.file' < githubpages.yaml)
             location=$(yq '.deploy.location' < githubpages.yaml)
