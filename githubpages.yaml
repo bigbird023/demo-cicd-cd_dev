@@ -1,5 +1,5 @@
 
 deploy:
-  type: github_release
+  type: github_page_release
   tag: 0.2.0+1
   repository: bigbird023/demo-cicd-webapp

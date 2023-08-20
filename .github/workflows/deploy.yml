@@ -13,6 +13,12 @@ env:
 
 jobs:
     build:
+
+        # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+        permissions:
+          pages: write      # to deploy to Pages
+          id-token: write   # to verify the deployment originates from an appropriate source
+
         runs-on: ubuntu-latest
 
         steps:
@@ -41,12 +47,15 @@ jobs:
             echo "${{env.repository}}"
 
         - name: Download Artifact
+          id: downloadstep
           uses: robinraju/release-downloader@v1.8
           with:
             repository: "${{env.repository}}"
             tag: "${{env.tag}}"
             extract: true
 
-        # - name: Deploy to GitHub Pages
-        #   id: deployment
-        #   uses: actions/deploy-pages@v2 
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v2 
+          with:
+            artifact_name:  ${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}
