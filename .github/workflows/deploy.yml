@@ -58,6 +58,11 @@ jobs:
           run: |
             echo "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
 
+        - uses: actions/upload-artifact@v3
+          with:
+            name: demo-cicd-webapp
+            path: "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
+
         - name: Setup Pages
           id: pages
           uses: actions/configure-pages@v3
@@ -66,4 +71,4 @@ jobs:
           id: deployment
           uses: actions/deploy-pages@v2 
           with:
-            artifact_name:  ${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}
+            artifact_name:  demo-cicd-webapp
