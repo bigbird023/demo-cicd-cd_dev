@@ -26,7 +26,9 @@ jobs:
             type=$(yq r githubpages.yaml '.deploy.type')
             file=$(yq r githubpages.yaml '.deploy.file')
             location=$(yq r githubpages.yaml '.deploy.location')
-        - run: |
+
+        - name: Echo Out Deployment Configuration Variables
+          run: |
             echo "${{steps.set_var.outputs.type}}"
             echo "${{steps.set_var.outputs.location}}"
             echo "${{steps.set_var.outputs.file}}"
