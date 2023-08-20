@@ -52,7 +52,7 @@ jobs:
           with:
             repository: "${{env.repository}}"
             tag: "${{env.tag}}"
-            extract: true
+            extract: false
 
         - name: Echo Out Download Artifact Variables
           run: |
