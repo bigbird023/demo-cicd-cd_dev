@@ -18,8 +18,7 @@ jobs:
         steps:
 
         - name: setup
-          uses: chrisdickinson/setup-yq@latest
-        - run: |
+          run: |
             yq --help
             yq --version
 
