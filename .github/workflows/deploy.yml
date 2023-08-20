@@ -31,8 +31,8 @@ jobs:
           id: set_var
           run: |
             echo "type=$(yq '.deploy.type' < githubpages.yaml)" >> $GITHUB_ENV
-            echo "tag=$(yq '.deploy.file' < githubpages.yaml)" >> $GITHUB_ENV
-            echo "repository=$(yq '.deploy.location' < githubpages.yaml)" >> $GITHUB_ENV
+            echo "tag=$(yq '.deploy.tag' < githubpages.yaml)" >> $GITHUB_ENV
+            echo "repository=$(yq '.deploy.repository' < githubpages.yaml)" >> $GITHUB_ENV
 
         - name: Echo Out Deployment Configuration Variables
           run: |
