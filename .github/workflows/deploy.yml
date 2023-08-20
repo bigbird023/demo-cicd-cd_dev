@@ -43,7 +43,7 @@ jobs:
         - name: Download Artifact
           uses: robinraju/release-downloader@v1.8
           with:
-            repository: "owner/repo"
+            repository: "${{env.repository}}"
             tag: "${{env.tag}}"
             fileName: "demo-cicd-webapp.zip"
             extract: true
