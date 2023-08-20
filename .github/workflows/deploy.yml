@@ -6,6 +6,11 @@ on:
         branches: [ "main" ]
     workflow_dispatch:
 
+env:
+  type: "none"
+  file: "none"
+  location: "none"
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -23,15 +28,15 @@ jobs:
         - name: Retrieve Deployment Configuration
           id: set_var
           run: |
-            type=$(yq r githubpages.yaml '.deploy.type')
-            file=$(yq r githubpages.yaml '.deploy.file')
-            location=$(yq r githubpages.yaml '.deploy.location')
+            echo "type=$(yq r githubpages.yaml '.deploy.type')" >> $GETHUB_ENV
+            echo "file=$(yq r githubpages.yaml '.deploy.file')" >> $GETHUB_ENV
+            echo "location=$(yq r githubpages.yaml '.deploy.location')" >> $GETHUB_ENV
 
         - name: Echo Out Deployment Configuration Variables
           run: |
-            echo "${{steps.set_var.outputs.type}}"
-            echo "${{steps.set_var.outputs.location}}"
-            echo "${{steps.set_var.outputs.file}}"
+            echo "${{env.type}}"
+            echo "${{env.location}}"
+            echo "${{env.file}}"
 
         # - name: Download Artifacts
         #   uses: actions/download-artifact@v2
