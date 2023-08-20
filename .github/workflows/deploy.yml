@@ -28,9 +28,9 @@ jobs:
         - name: Retrieve Deployment Configuration
           id: set_var
           run: |
-            echo "type=$(yq r githubpages.yaml '.deploy.type')" >> $GETHUB_ENV
-            echo "file=$(yq r githubpages.yaml '.deploy.file')" >> $GETHUB_ENV
-            echo "location=$(yq r githubpages.yaml '.deploy.location')" >> $GETHUB_ENV
+            echo "type=$(yq r githubpages.yaml '.deploy.type')" >> $GITHUB_ENV
+            echo "file=$(yq r githubpages.yaml '.deploy.file')" >> $GITHUB_ENV
+            echo "location=$(yq r githubpages.yaml '.deploy.location')" >> $GITHUB_ENV
 
         - name: Echo Out Deployment Configuration Variables
           run: |
