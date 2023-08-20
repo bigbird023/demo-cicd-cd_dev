@@ -45,7 +45,6 @@ jobs:
           with:
             repository: "${{env.repository}}"
             tag: "${{env.tag}}"
-            fileName: "demo-cicd-webapp.zip"
             extract: true
 
         # - name: Deploy to GitHub Pages
