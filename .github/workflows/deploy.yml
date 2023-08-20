@@ -54,6 +54,14 @@ jobs:
             tag: "${{env.tag}}"
             extract: true
 
+        - name: Echo Out Download Artifact Variables
+          run: |
+            echo "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
+
+        - name: Setup Pages
+          id: pages
+          uses: actions/configure-pages@v3
+
         - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@v2 
