@@ -1,5 +1,5 @@
 
 deploy:
   type: github_release
-  file: demo-cicd-webapp-0.2.0+1.zip
-  location: https://github.com/bigbird023/demo-cicd-webapp/releases
+  tag: 0.2.0+1
+  repository: bigbird023/demo-cicd-webapp

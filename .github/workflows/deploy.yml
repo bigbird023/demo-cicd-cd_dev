@@ -8,8 +8,8 @@ on:
 
 env:
   type: "none"
-  file: "none"
-  location: "none"
+  tag: "none"
+  repository: "none"
 
 jobs:
     build:
@@ -31,20 +31,22 @@ jobs:
           id: set_var
           run: |
             echo "type=$(yq '.deploy.type' < githubpages.yaml)" >> $GITHUB_ENV
-            echo "file=$(yq '.deploy.file' < githubpages.yaml)" >> $GITHUB_ENV
-            echo "location=$(yq '.deploy.location' < githubpages.yaml)" >> $GITHUB_ENV
+            echo "tag=$(yq '.deploy.file' < githubpages.yaml)" >> $GITHUB_ENV
+            echo "repository=$(yq '.deploy.location' < githubpages.yaml)" >> $GITHUB_ENV
 
         - name: Echo Out Deployment Configuration Variables
           run: |
             echo "${{env.type}}"
-            echo "${{env.location}}"
-            echo "${{env.file}}"
+            echo "${{env.tag}}"
+            echo "${{env.repository}}"
 
-        # - name: Download Artifacts
-        #   uses: actions/download-artifact@v2
-
-        # - name: UnZip Artifacts
-        #   uses: actions/download-artifact@v2
+        - name: Download Artifact
+          uses: robinraju/release-downloader@v1.8
+          with:
+            repository: "owner/repo"
+            tag: "${{env.tag}}"
+            fileName: "demo-cicd-webapp.zip"
+            extract: true
 
         # - name: Deploy to GitHub Pages
         #   id: deployment
