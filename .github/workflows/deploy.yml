@@ -21,6 +21,7 @@ jobs:
           uses: chrisdickinson/setup-yq@latest
         - run: |
             yq --help
+            yq --version
 
         - name: Checkout Out Expected State
           uses: actions/checkout@v3
