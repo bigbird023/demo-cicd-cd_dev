@@ -58,14 +58,20 @@ jobs:
             tag: "${{env.tag}}"
             extract: false
 
-        - name: Echo Out Download Artifact Variables
-          run: |
-            echo "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
+        - name: Install zip
+          uses: montudor/action-zip@v1
+
+        - name: Zip output
+          run: unzip -qq ${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }} -d dist
+
+        # - name: Echo Out Download Artifact Variables
+        #   run: |
+        #     echo "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
 
         - uses: actions/upload-artifact@v3
           with:
             name: demo-cicd-webapp
-            path: "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
+            path: "dist"
 
         - name: Setup Pages
           id: pages
