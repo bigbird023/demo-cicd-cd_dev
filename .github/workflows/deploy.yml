@@ -58,27 +58,34 @@ jobs:
             tag: "${{env.tag}}"
             extract: false
 
-        # - name: Install zip
-        #   uses: montudor/action-zip@v1
+        - name: Install zip
+          uses: montudor/action-zip@v1
 
-        # - name: Zip output
-        #   run: unzip -qq ${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }} -d dist
+        - name: Zip output
+          run: unzip -qq ${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }} -d dist
 
         # - name: Echo Out Download Artifact Variables
         #   run: |
         #     echo "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
 
-        - uses: actions/upload-artifact@v3
-          with:
-            name: demo-cicd-webapp
-            path: "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
+        # - uses: actions/upload-artifact@v3
+        #   with:
+        #     name: demo-cicd-webapp
+        #     path: "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
 
-        - name: Setup Pages
-          id: pages
-          uses: actions/configure-pages@v3
+        # - name: Setup Pages
+        #   id: pages
+        #   uses: actions/configure-pages@v3
+
+        # - name: Deploy to GitHub Pages
+        #   id: deployment
+        #   uses: actions/deploy-pages@v2
+        #   with:
+        #     artifact_name:  demo-cicd-webapp
 
         - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v2
+          uses: peaceiris/actions-gh-pages@v3
           with:
-            artifact_name:  demo-cicd-webapp
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: dist
+            enable_jekyll: true
