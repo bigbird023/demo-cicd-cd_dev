@@ -65,24 +65,9 @@ jobs:
         - name: Zip output
           run: unzip -qq ${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }} -d dist
 
-        # - name: Echo Out Download Artifact Variables
-        #   run: |
-        #     echo "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
-
-        # - uses: actions/upload-artifact@v3
-        #   with:
-        #     name: demo-cicd-webapp
-        #     path: "${{ fromJson(steps.downloadstep.outputs.downloaded_files)[0] }}"
-
-        # - name: Setup Pages
-        #   id: pages
-        #   uses: actions/configure-pages@v3
-
-        # - name: Deploy to GitHub Pages
-        #   id: deployment
-        #   uses: actions/deploy-pages@v2
-        #   with:
-        #     artifact_name:  demo-cicd-webapp
+        - name: Echo Debug Information
+          run: |
+            echo "ls dist"
 
         - name: Deploy to GitHub Pages
           uses: peaceiris/actions-gh-pages@v3.9.3
