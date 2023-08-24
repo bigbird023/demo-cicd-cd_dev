@@ -68,7 +68,6 @@ jobs:
         - name: Echo Debug Information
           run: |
             ls dist
-            ls dist/demo-cicd-webapp
             ls dist/dist
             ls dist/dist/demo-cicd-webapp
 
