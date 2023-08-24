@@ -91,7 +91,7 @@ jobs:
           #   publish_dir: ./dist/demo-cicd-webapp
           #   enable_jekyll: true
 
-          uses: AhsanAyaz/angular-deploy-gh-pages-actions@[version] ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
+          uses: AhsanAyaz/angular-deploy-gh-pages-actions@1.4.0 ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
           with:
             #github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
             #build_configuration: staging # The build environment for the app. please look configurations in your angular.json
