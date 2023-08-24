@@ -70,12 +70,13 @@ jobs:
             ls dist
             ls dist/dist
             ls dist/dist/demo-cicd-webapp
+            echo $PWD
 
         - name: Deploy to GitHub Pages
           uses: peaceiris/actions-gh-pages@v3.9.3
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./dist/dist/demo-cicd-webapp
+            publish_dir: dist/dist/demo-cicd-webapp
             enable_jekyll: true
 
           # uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0 ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
