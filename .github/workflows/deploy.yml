@@ -67,7 +67,10 @@ jobs:
 
         - name: Echo Debug Information
           run: |
-            echo "ls dist"
+            ls dist
+            ls dist/demo-cicd-webapp
+            ls dist/dist
+            ls dist/dist/demo-cicd-webapp
 
         - name: Deploy to GitHub Pages
           uses: peaceiris/actions-gh-pages@v3.9.3
